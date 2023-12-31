@@ -44,5 +44,7 @@ You can run "python A1/A2/B1/B2.py" to run each task. And it can also be done wi
     A2: CNN training with a history best model loaded
 - For B1 and B2,
     B1:random forest
-    B2 CNN 
+    B2：CNN and load a pre-trained model
+
+  Warning: the CNN training and testing result could be affected slightly by the tensorflow version/settings and program running order
 
