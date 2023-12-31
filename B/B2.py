@@ -12,8 +12,10 @@ from keras.layers import Conv2D, MaxPooling2D, Flatten, Dense
 from keras.callbacks import EarlyStopping
 from keras import layers
 from keras.regularizers import l2
+from keras.models import load_model
 
 random.seed(42)
+
 np.random.seed(42)
 tf.random.set_seed(42)
 keras.utils.set_random_seed(42)
@@ -86,11 +88,21 @@ def testing(model, test, test_labels):
   predicted_labels = np.argmax(predictions, axis=1)
   print(classification_report(test_labels,predicted_labels)) 
 
+def load_best_model():
+  path="./B/model862.h5"
+  saved_model = load_model(path)
+  saved_model.summary()
+  return saved_model
+
 def demonstration():
   train_images, val_images, test_images, train_labels, val_labels, test_labels=load_data(file_path)
   train, val ,test=normalization(train_images,val_images,test_images)
   history,model=model_training(train,train_labels,val,val_labels)
   testing(model,test, test_labels)
+  print("\n")
+  print("Load the model:")
+  best_model=load_best_model()
+  testing(best_model, test, test_labels)
 
 if __name__ == "__main__":
   demonstration() 
