@@ -3,6 +3,7 @@ import numpy as np
 import keras
 
 from sklearn.metrics import classification_report
+from sklearn.metrics import f1_score, precision_score, recall_score
 from sklearn.utils.class_weight import compute_class_weight
 
 import tensorflow as tf
@@ -73,7 +74,11 @@ def model_training(train,train_labels,val,val_labels):
                                      y=train_labels.flatten())
 
     class_weights_dict = {i : class_weights[i] for i in range(len(class_weights))}
+    random.seed(42)
 
+    np.random.seed(42)
+    tf.random.set_seed(42)
+    keras.utils.set_random_seed(42)
     model = Sequential([
         Conv2D(32, (3, 3), activation='relu', padding="same",input_shape=(28, 28, 3)),
         MaxPooling2D(2, 2),
@@ -113,6 +118,12 @@ def testing(model, test, test_labels):
     test_loss, test_acc = model.evaluate(test,  test_labels, verbose=1)
     predictions = model.predict(test)
     predicted_labels = np.argmax(predictions, axis=1)
+    precision = precision_score(test_labels, predicted_labels,average="weighted")
+    recall = recall_score(test_labels, predicted_labels,average="weighted")
+    f1 = f1_score(test_labels, predicted_labels,average="weighted")
+    print("Precision:", precision)
+    print("Recall:", recall)
+    print("F1 Score:", f1)
     print(classification_report(test_labels,predicted_labels)) 
 
 def load_best_model():
