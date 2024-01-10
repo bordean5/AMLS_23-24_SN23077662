@@ -22,7 +22,7 @@ file_path="./Datasets/pneumoniamnist.npz"
 
 
 
-def load_data(file_path:str):
+def load_data(path:str):
     """
       load the data with file path and extract subsets
     Args:
@@ -30,7 +30,7 @@ def load_data(file_path:str):
     Returns:
         train_images, val_images, test_images, train_labels, val_labels, test_labels
     """
-    data = np.load(file_path)
+    data = np.load(path)
 
     train_images=data["train_images"]
     val_images=data["val_images"]
@@ -131,7 +131,10 @@ def model_training(train,train_labels,val,val_labels):
        0:weight_for_0,
        1:weight_for_1
     }
-
+    random.seed(42)
+    np.random.seed(42)
+    tf.random.set_seed(42)
+    keras.utils.set_random_seed(42)
     model = Sequential([
         layers.Conv2D(32, (3, 3), activation='relu', padding="same",input_shape=(28, 28, 1)),
         layers.MaxPooling2D(2, 2),

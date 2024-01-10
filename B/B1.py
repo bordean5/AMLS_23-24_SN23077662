@@ -83,7 +83,7 @@ def randomf_training(train, train_labels):
         the rf model
     """
     print("training random forest model for pathmnist...")
-    rf = RandomForestClassifier(n_estimators=250,n_jobs=4,class_weight="balanced")
+    rf = RandomForestClassifier(n_estimators=250,n_jobs=4,class_weight="balanced",random_state=42)
     rf =rf.fit(train, train_labels)
 
     return rf

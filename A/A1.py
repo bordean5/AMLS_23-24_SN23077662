@@ -181,7 +181,7 @@ def randomf_hyperparameter_tuning(train,val, train_labels,val_labels):
         "n_estimators":[50,100,150],
         'class_weight':["balanced"]
     }
-    rf= RandomForestClassifier()
+    rf= RandomForestClassifier(random_state=42)
 
     grid_search = GridSearchCV(rf, param_grid, cv=4, scoring='accuracy', verbose=1)
     grid_search.fit(train, train_labels)
@@ -247,7 +247,7 @@ def randomf_training(train, train_labels, best_params):
         the rf model
     """
 
-    best_rf = RandomForestClassifier(**best_params)
+    best_rf = RandomForestClassifier(**best_params,random_state=42)
     best_rf =best_rf.fit(train, train_labels)
 
     return best_rf
