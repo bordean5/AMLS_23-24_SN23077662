@@ -22,20 +22,24 @@ This readme file shows the structure of the codes and how to use it.
 
 &emsp;&emsp; -- A2.py
 
+&emsp;&emsp; -- best_model.h5 (pre-trained CNN model)
+
 &emsp; -- B
 
 &emsp;&emsp; -- B1.py
 
 &emsp;&emsp; -- B2.py
 
-&emsp; -- main.py : file to run the whole project
+&emsp;&emsp; -- model862.h5 (pre-trained CNN model)
+
+&emsp; -- main.py: file to run the whole project
 
 &emsp; -- README.md
 
 
 ### Program run instruction
 
-The main function is composed of several sub function and you can solve the task by running main.py
+The main function is composed of several sub-functions and you can solve the task by running main.py
 
 You can run "python A1/A2/B1/B2.py" to run each task. And it can also be done with "python main.py" which 4 tasks will be run one by one.
 
